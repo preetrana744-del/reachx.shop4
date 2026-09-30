@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reach X — Warm, cinematic dining</title><style>
+/* ===== Reach X immersive library transformation ===== */
+:root{
+  --rx-black:#050505;--rx-line:rgba(255,255,255,.115);--rx-gold:#d5b36a;--rx-gold2:#ffe8a9;
+}
+.rx-promo{
+  position:fixed;left:0;right:0;top:0;height:38px;z-index:1000;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:0 12px;background:linear-gradient(90deg,#d9d9e0,#ece9e8,#d9dae1);
+  color:#101012;font-size:11px;letter-spacing:.02em;box-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+.rx-promo .rx-strike{text-decoration:line-through;opacity:.45}
+.rx-promo .rx-sale{background:#101012;color:#fff;border-radius:999px;padding:5px 10px;font-weight:800}
+.rx-promo .rx-count{font-variant-numeric:tabular-nums;font-weight:700}
+.topbar{top:38px!important}
+
+/* Library */
+.rx-library{
+  min-height:100vh;position:relative;display:block;padding:10vh 3vw 16vh;z-index:4;overflow:hidden;
+  background:radial-gradient(circle at 20% 20%,rgba(255,217,141,.035),transparent 28%),
+             radial-gradient(circle at 84% 50%,rgba(132,92,255,.04),transparent 30%),#050505;
+}
+.rx-library-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:0 0 30px;padding:0 6px}
+.rx-library-head .rx-overline{font-size:10px;letter-spacing:.23em;text-transform:uppercase;color:#7d7e86}
+.rx-library-head h2{margin:8px 0 0;font-size:clamp(48px,6.3vw,94px);line-height:.9;letter-spacing:-.065em;font-weight:600;color:#f3f3f0}
+.rx-library-head .rx-all{color:#999aa2;font-size:12px;white-space:nowrap;padding-bottom:7px}
+.rx-library-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.rx-work-card{
+  --rx-x:0px;--rx-y:0px;--rx-scale:1;--rx-rot:0deg;--rx-scroll-shift:0px;
+  position:relative;height:360px;border:1px solid var(--rx-line);border-radius:18px;overflow:hidden;background:#09090a;
+  transform:translate3d(var(--rx-x),var(--rx-y),0) scale(var(--rx-scale)) rotate(var(--rx-rot));
+  transition:transform .55s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s;will-change:transform;
+}
+.rx-work-card:hover{border-color:rgba(255,255,255,.24);box-shadow:0 24px 60px rgba(0,0,0,.34)}
+.rx-work-card .rx-preview{
+  position:absolute;inset:0;overflow:hidden;transform:translate3d(0,calc(var(--rx-scroll-shift,0px)*.65),0) scale(1.07);
+  transition:transform .75s cubic-bezier(.2,.7,.2,1);
+}
+.rx-work-card:hover .rx-preview{transform:translate3d(0,calc(var(--rx-scroll-shift,0px)*.5),0) scale(1.12)}
+.rx-work-card .rx-preview:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,0,0,.84) 100%);pointer-events:none}
+.rx-work-card .rx-info{position:absolute;left:17px;right:17px;bottom:15px;z-index:2}
+.rx-work-card .rx-kind{color:#c4c4ca;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.rx-work-card h3{margin:7px 0 7px;font-size:26px;letter-spacing:-.045em;line-height:.95}
+.rx-work-card p{margin:0;color:#c2c2c8;font-size:11px;line-height:1.5;max-width:310px}
+.rx-work-card .rx-open{display:inline-flex;margin-top:11px;padding:6px 9px;border:1px solid rgba(255,255,255,.17);border-radius:999px;font-size:9px;color:#fff;background:rgba(0,0,0,.16)}
+.rx-poster{position:absolute;inset:0;animation:rxPosterFloat 10s ease-in-out infinite alternate}
+@keyframes rxPosterFloat{from{transform:translate3d(-1%,-1%,0) scale(1)}to{transform:translate3d(2%,1.5%,0) scale(1.045)}}
+.rx-poster .rx-orb{position:absolute;border-radius:50%;filter:blur(1px);box-shadow:0 0 50px rgba(255,215,130,.18)}
+.rx-poster .rx-window{position:absolute;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(255,255,255,.035);box-shadow:0 20px 40px rgba(0,0,0,.22),inset 0 0 25px rgba(255,255,255,.025)}
+.rx-food{background:radial-gradient(circle at 68% 25%,rgba(247,197,136,.44),transparent 15%),radial-gradient(circle at 32% 42%,rgba(181,67,25,.34),transparent 22%),linear-gradient(145deg,#291811 0%,#3e2014 45%,#080808 90%)}
+.rx-real{background:radial-gradient(circle at 72% 22%,rgba(160,205,255,.42),transparent 16%),linear-gradient(145deg,#061015 0%,#17313f 46%,#050708 88%)}
+.rx-gym{background:radial-gradient(circle at 78% 18%,rgba(211,255,94,.27),transparent 16%),linear-gradient(145deg,#020405 0%,#0c1a1f 54%,#030506 92%)}
+.rx-web{background:radial-gradient(circle at 78% 19%,rgba(141,106,255,.42),transparent 17%),radial-gradient(circle at 28% 72%,rgba(85,173,255,.22),transparent 20%),linear-gradient(145deg,#090710,#171127,#050505)}
+.rx-seo{background:linear-gradient(rgba(9,13,18,.72),rgba(9,13,18,.92)),repeating-linear-gradient(90deg,transparent 0 28px,rgba(121,231,255,.07) 29px 30px),repeating-linear-gradient(0deg,transparent 0 28px,rgba(121,231,255,.05) 29px 30px),#071017}
+.rx-social{background:radial-gradient(circle at 30% 36%,rgba(247,138,203,.48),transparent 18%),radial-gradient(circle at 72% 65%,rgba(94,114,255,.45),transparent 18%),linear-gradient(145deg,#160912,#08070f)}
+.rx-leads{background:linear-gradient(145deg,#0b120b,#07100b 55%,#050505)}
+.rx-brand{background:radial-gradient(circle at 68% 28%,rgba(255,222,158,.34),transparent 20%),radial-gradient(circle at 22% 70%,rgba(164,92,255,.24),transparent 25%),linear-gradient(145deg,#14100d,#08080b)}
+.rx-food .rx-orb1{width:210px;height:210px;right:-30px;top:35px;background:radial-gradient(circle at 30% 30%,#fff5dd,#bc6e3e 42%,transparent 68%)}
+.rx-food .rx-window{width:62%;height:41%;left:12%;top:22%;transform:rotate(-7deg)}
+.rx-real .rx-window{width:68%;height:52%;left:13%;top:14%;transform:perspective(500px) rotateY(-10deg);background:linear-gradient(135deg,rgba(195,220,235,.10),rgba(255,255,255,.02))}
+.rx-real .rx-orb1{width:260px;height:260px;right:-100px;bottom:-55px;background:radial-gradient(circle,#8fb8d4,rgba(8,25,33,.2) 65%,transparent 72%)}
+.rx-gym .rx-window{width:74%;height:7px;left:13%;top:30%;border-radius:99px;background:rgba(234,255,192,.42);box-shadow:0 0 30px rgba(215,255,92,.18)}
+.rx-gym .rx-orb1{width:120px;height:120px;right:14%;top:14%;background:radial-gradient(circle,#ecffc0,#6b7636 32%,transparent 70%)}
+.rx-web .rx-window{width:66%;height:48%;left:16%;top:16%;background:linear-gradient(145deg,rgba(125,94,255,.24),rgba(255,255,255,.03));animation:rxWindowFloat 7s ease-in-out infinite alternate}
+.rx-web .rx-orb1{width:170px;height:170px;left:-48px;bottom:-50px;background:radial-gradient(circle,#6ba8ff,rgba(52,97,171,.24) 45%,transparent 72%)}
+@keyframes rxWindowFloat{to{transform:translateY(16px) rotate(2deg)}}
+.rx-seo .rx-window{width:54%;height:54%;right:11%;top:12%;border-radius:16px}
+.rx-seo .rx-orb1{width:150px;height:150px;left:-40px;bottom:15px;background:radial-gradient(circle,#79e7ff,rgba(41,97,126,.25) 45%,transparent 72%)}
+.rx-social .rx-orb1{width:190px;height:190px;left:17%;top:19%;background:radial-gradient(circle,#ffafdd,#5b58a8 34%,transparent 68%);animation:rxSocial 7s ease-in-out infinite alternate}
+@keyframes rxSocial{to{transform:translate3d(70px,30px,0) rotate(17deg) scale(1.08)}}
+.rx-social .rx-window{width:42%;height:36%;right:9%;bottom:19%;transform:rotate(9deg)}
+.rx-leads .rx-window{width:76%;height:56%;left:10%;top:17%;background:linear-gradient(160deg,rgba(208,255,118,.14),rgba(255,255,255,.02))}
+.rx-leads .rx-orb1{width:180px;height:180px;right:-45px;bottom:-45px;background:radial-gradient(circle,#d7ff5c,#4a5e2c 35%,transparent 70%)}
+.rx-brand .rx-window{width:66%;height:52%;left:15%;top:16%;transform:rotate(-3deg);background:linear-gradient(145deg,rgba(255,235,184,.12),rgba(156,83,255,.07))}
+.rx-brand .rx-orb1{width:180px;height:180px;right:-40px;top:-38px;background:radial-gradient(circle,#ffe4a8,#906344 35%,transparent 70%)}
+.rx-library-cta{display:flex;justify-content:center;margin-top:28px}
+.rx-library-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#dedee3;font-size:11px;background:rgba(255,255,255,.035)}
+
+/* Extra work pages */
+.rx-work-page{background:#050505;color:#f2f2ef;min-height:100vh}
+.rx-work-page .rx-page-head{padding:80px 3vw 30px}
+.rx-work-page .rx-page-head h1{font-size:clamp(56px,9vw,128px);letter-spacing:-.075em;line-height:.84;margin:12px 0}
+.rx-work-page .rx-page-head p{max-width:720px;color:#8f9097;line-height:1.6}
+.rx-mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding:10px 3vw 100px}
+.rx-mosaic .rx-work-card{grid-column:span 4;height:420px}
+.rx-mosaic .rx-work-card:nth-child(1){grid-column:span 8;height:520px}
+.rx-mosaic .rx-work-card:nth-child(4){grid-column:span 8}
+.rx-back{margin-top:20px;display:inline-flex;padding:11px 14px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#ddd}
+
+/* Cookie consent */
+.rx-cookie{
+  position:fixed;left:18px;bottom:18px;width:min(490px,calc(100vw - 36px));z-index:1100;padding:22px 24px;
+  border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(19,19,21,.95);
+  box-shadow:0 24px 80px rgba(0,0,0,.48);color:#f1f1f2;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)
+}
+.rx-cookie h3{margin:0 0 12px;font-size:18px}.rx-cookie p{margin:0 0 15px;color:#aeb0b7;font-size:13px;line-height:1.6}.rx-cookie a{color:#e4e4e8;text-decoration:underline}
+.rx-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+.rx-cookie-actions button{border-radius:999px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);background:#171719;color:#eee;font-size:11px}
+.rx-cookie-actions .accept{background:#eceef4;color:#101012;border-color:#eceef4}
+.rx-cookie-manage{position:fixed;inset:0;z-index:1101;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.rx-cookie-manage.open{display:grid}
+.rx-cookie-panel{width:min(560px,94vw);padding:24px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:#101012}
+.rx-cookie-panel h3{margin:0 0 10px;font-size:24px}.rx-cookie-panel p{color:#aaa;line-height:1.6;font-size:13px}
+.rx-pref{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid rgba(255,255,255,.08)}
+.rx-pref small{display:block;color:#81828a;margin-top:4px}
+.rx-switch{width:48px;height:28px;border-radius:999px;background:#3a3a3d;border:0;position:relative;flex:0 0 auto}
+.rx-switch:after{content:"";position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.rx-switch.on{background:#a9be53}.rx-switch.on:after{left:24px}
+.rx-cookie-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.rx-cookie-footer button{padding:10px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:#18181a;color:#fff}
+@media(max-width:1100px){
+  .rx-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rx-mosaic .rx-work-card,.rx-mosaic .rx-work-card:nth-child(1),.rx-mosaic .rx-work-card:nth-child(4){grid-column:span 6}
+}
+@media(max-width:700px){
+  .rx-promo{font-size:9px;gap:7px}.rx-promo .rx-strike{display:none}
+  .rx-library{padding:8vh 4vw 12vh}.rx-library-head{display:block}.rx-library-head .rx-all{margin-top:10px}
+  .rx-library-grid{grid-template-columns:1fr;gap:10px}.rx-work-card{height:300px}
+  .rx-mosaic{grid-template-columns:1fr;padding:10px 4vw 70px}
+  .rx-mosaic .rx-work-card,.rx-mosaic .rx-work-card:nth-child(1),.rx-mosaic .rx-work-card:nth-child(4){grid-column:1;height:330px}
+  .rx-cookie{left:10px;bottom:10px;width:calc(100vw - 20px);padding:18px}
+}
+
+.rx-detail{min-height:100vh;background:#050505;color:#f4f4f1;padding:0 3vw 80px}
+.rx-detail-head{padding:90px 0 40px}.rx-detail-head .rx-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7a7b82}
+.rx-detail-head h1{font-size:clamp(58px,10vw,140px);line-height:.82;letter-spacing:-.08em;margin:14px 0}.rx-detail-head p{max-width:760px;color:#96979f;line-height:1.7}
+.rx-detail-hero{height:min(72vh,720px);border:1px solid rgba(255,255,255,.12);border-radius:26px;overflow:hidden;position:relative}
+.rx-detail-hero .rx-preview{position:absolute;inset:0}.rx-detail-copy{position:absolute;left:28px;right:28px;bottom:25px;z-index:2}
+.rx-detail-copy .rx-kind{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#b9b9bf}.rx-detail-copy h2{font-size:clamp(42px,7vw,88px);letter-spacing:-.06em;margin:8px 0}
+.rx-detail-copy p{max-width:650px;color:#d0d0d4;line-height:1.6}.rx-detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.rx-detail-actions a{display:inline-flex;padding:12px 15px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:11px}.rx-detail-actions a.primary{background:#f5f4ef;color:#070707;border-color:#f5f4ef}
+</style></head><body>
+<div class="rx-promo"><span>REACH X EARLY ACCESS SALE</span><span class="rx-sale">$399.50</span><span>—</span><span>50% OFF</span></div>
+<main class="rx-detail"><div class="rx-detail-head"><div class="rx-overline">Food & Hospitality</div><h1>Warm, cinematic dining</h1><p>Hospitality direction with large visual moments, atmosphere-first storytelling and a premium restaurant journey.</p><a class="rx-back" href="work.html">← Back to work library</a></div>
+<div class="rx-detail-hero"><div class="rx-preview rx-food"><div class="rx-poster"><div class="rx-orb rx-orb1"></div><div class="rx-window"></div></div></div><div class="rx-detail-copy"><div class="rx-kind">Reach X work direction</div><h2>Warm, cinematic dining</h2><p>Long-scroll composition, moving layers, hover depth and a cinematic visual system designed to stay inside the Reach X gold/black identity.</p><div class="rx-detail-actions"><a class="primary" href="https://restaurant-amici.com/" target="_blank" rel="noopener">Open reference ↗</a><a href="mailto:reachx.shop@gmail.com?subject=Reach X — Warm, cinematic dining project">Build something like this ↗</a></div></div></div></main></body></html>
